@@ -4,3 +4,5 @@
 *.Rproj
 *.mov
 hover_rotate/*
+.Rproj.user
+rsconnect/*

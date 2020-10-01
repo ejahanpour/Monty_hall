@@ -17,27 +17,27 @@ Whatever you responded above, you are not alone! This has been a controversial d
 
 Let X indicate the door picked initially by you, Y indicate the door that has car behind it, and Z is the door opened by the host. So X=1 means that that you chose door 1 and Y = 1 means that door 1 has car behind it. Now lets calculate the posterior probabilites for both doors 1 and 2 condition on the user select door1 and host opened door 3 with the goat:
 
-$P(Y = 1 | X = 1, Z = 3) = P(Z = 3| X = 1, Y = 1)*P(Y = 1| X = 1)*P(X = 1) / (P(Z = 3 | X = 1)*P(X = 1))$
+P(Y = 1 | X = 1, Z = 3) = P(Z = 3| X = 1, Y = 1)*P(Y = 1| X = 1)*P(X = 1) / (P(Z = 3 | X = 1)*P(X = 1))
 
 We can remove P(X = 1) from both nominator and denominator:
-$P(Y = 1 | X = 1, Z = 3) = P(Z = 3| X = 1, Y = 1)*P(Y = 1| X = 1) / P(Z = 3 | X = 1)$
+P(Y = 1 | X = 1, Z = 3) = P(Z = 3| X = 1, Y = 1)*P(Y = 1| X = 1) / P(Z = 3 | X = 1)
 
 P(Z = 3| X = 1, Y = 1) is 1/2 as if you select the door with the car, host had two door options to open. P(Y = 1| X = 1) = 1/3 as your choice does not change the probability of the car in that door, unless you have some sort of telepathy!
 
 Now let's calcualte P(Z = 3 | X = 1)
 
-$P(Z = 3 | X = 1) = P(Z = 3 |X = 1, Y = 1)*P(Y = 1) + P(Z = 3 |X = 1, Y = 2)*P(Y = 2) + P(Z = 3 |X = 1, Y= 3)*P(Y= 3)$
+P(Z = 3 | X = 1) = P(Z = 3 |X = 1, Y = 1)*P(Y = 1) + P(Z = 3 |X = 1, Y = 2)*P(Y = 2) + P(Z = 3 |X = 1, Y= 3)*P(Y= 3)
 
-$P(Z = 3 | X = 1) = 1/2 * 1/3 + 1 * 1/3 + 0 * 1/3 = 1/2$
+P(Z = 3 | X = 1) = 1/2 * 1/3 + 1 * 1/3 + 0 * 1/3 = 1/2
 
-Mapping the values into the equation for $P(Y = 1 | X = 1, Z = 3)$
+Mapping the values into the equation for P(Y = 1 | X = 1, Z = 3)
 
-$P(Y = 1 | X = 1, Z = 3) = (1/2 * 1/3)/(1/2) = 1/3$
+P(Y = 1 | X = 1, Z = 3) = (1/2 * 1/3)/(1/2) = 1/3
 
 So staying with your choice after seeing the door will not increase your chance of winning. By changing the door, you can increase your probability of success to 2/3!!
 
-$P(Y = 2|X = 1, Z = 3) = 1 - P(Y = 1|X = 1, Z = 3) = 2/3$
+P(Y = 2|X = 1, Z = 3) = 1 - P(Y = 1|X = 1, Z = 3) = 2/3
 
 #### Try it your self
 
-Long story short, if you stay stubborn and not change your door, you would still have 1/3 chance of winning. But if you change the door, your chance of winning will increase to 2/3. Does your brain still struggles to accept this. Please try it yourself. I created a shiny app that you can play as much as you can. As the current free shiny servers are only let one concurrent users, you might not be able to stay on the game for a long time, Please feel free to clone this repository and run it on your computer if your rather.
+Long story short, if you stay stubborn and not change your door, you would still have 1/3 chance of winning. But if you change the door, your chance of winning will increase to 2/3. Does your brain still struggles to accept this. Please try it yourself. I created a [shiny app](https://ejahanpour.shinyapps.io/Monty_hall/) that you can play as much as you can. As the current free shiny servers are only let one concurrent users, you might not be able to stay on the game for a long time, Please feel free to clone this repository and run it on your computer if your rather.
