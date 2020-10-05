@@ -1,0 +1,54 @@
+---
+title: "Monty Hall Problem"
+author: "Ehsan Jahanpour"
+date: "10/4/2020"
+output: html_document
+---
+
+## Monty Hall Show (to Change or not to change)
+
+Monty hall is a well-known game show. Although the rules of the show is pretty simple and easy to learn but the probability puzzle behind it has always bewildred me. More specifically, my brain had a hard time accepting what statistics was suggesting. In another way my brain used to confidently and systematically lie to me and make me believe that changing the option after viewing one outcome would not change my chance. That is why I decided to write this simple application in R (using R and Javascript) to understand one of my cognitive points of failures. I will explain the game and the mathematics. Please pause before `Probability of success` section and ask try to answer to the question before proceeding to the next section.
+
+
+#### Monty Hall Game
+
+The rules of the games are simple. Suppose you are given the choice of three doors in front of you. Behind one door is a car; behind the other two doors are goats. The game starts by you picking a door (say door 1). The host, who know what is behind each door, will open anothe door which has a goat (say door 3). Then, you will have two options to 
+
+a.  either stay with your initial choice
+b.  change your mind and pick door 2
+
+So, **What will you do here?** Or more generally, does switching your choice would change your chance of success?... 
+
+
+Whatever you responded above, you are not alone! This has been a controversial discussion in statisitics community for a long time. For more information about the game and discussions, please feel free to check out the [Wiki page](https://en.wikipedia.org/wiki/Monty_Hall_problem). I will apply Bayes theorem to get the posterior probability for both doors 1 and 2 after observing that behind door 3 is a goat.   
+
+#### Probability of success
+
+Let X indicate the door picked initially by you, Y indicate the door that has car behind it, and Z is the door opened by the host. So X=1 means that you chose door 1 and Y = 1 means that door 1 has car behind it. Now lets calculate the posterior probabilites for both doors 1 and 2 condition on the user selected door1 and host opened door 3 with the goat:
+
+$P(Y = 1 | X = 1, Z = 3) = \frac{P(Z = 3| X = 1, Y = 1) \times P(Y = 1| X = 1) \times P(X = 1)}{(P(Z = 3 | X = 1) \times P(X = 1))}$
+
+We can remove P(X = 1) from both numerator and denominator:
+
+$P(Y = 1 | X = 1, Z = 3) = \frac{P(Z = 3| X = 1, Y = 1) \times (Y = 1| X = 1)}{P(Z = 3 | X = 1)}$
+
+*   P(Z = 3| X = 1, Y = 1) is 1/2 as if you select the door with the car, host would have two door options to open. 
+*   P(Y = 1| X = 1) = 1/3 as your choice does not change the probability of the car behind that door, unless you have some sort of telepathy!
+
+Now let's calcualte P(Z = 3 | X = 1)
+
+$P(Z = 3 | X = 1) = P(Z = 3 |X = 1, Y = 1) \times P(Y = 1) + P(Z = 3 |X = 1, Y = 2) \times P(Y = 2) + P(Z = 3 |X = 1, Y= 3) \times P(Y= 3)$
+
+$P(Z = 3 | X = 1) = 1/2 \times 1/3 + 1 \times 1/3 + 0 \times 1/3 = 1/2$
+
+Mapping the values into the equation for P(Y = 1 | X = 1, Z = 3)
+
+$P(Y = 1 | X = 1, Z = 3) = \frac{1/2 \times 1/3}{1/2} = 1/3$
+
+So staying with your choice after seeing the door will not increase your chance of winning. By changing the door, you can increase your probability of success to 2/3!!
+
+$P(Y = 2|X = 1, Z = 3) = 1 - P(Y = 1|X = 1, Z = 3) = 2/3$
+
+#### Try it your self
+
+Long story short, if you are do not change your selected door, you would still have 1/3 chance of winning. But if you change the door, your chance of winning will increase to 2/3. Does your brain still struggles to accept this (as mine used to do that). Please try it yourself. I created a [DIY shiny app](https://ejahanpour.shinyapps.io/Monty_hall/) that you can play as much as you can. As the current shiny server that hosts this game only lets one concurrent user, you might not be able to stay on the game for a long time. Please feel free to clone the [repository](https://github.com/ejahanpour/Monty_hall) and run it on your computer.
